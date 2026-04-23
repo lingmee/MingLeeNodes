@@ -1,0 +1,2 @@
+pilgram>=1.2,<2
+pilgram2>=2.0,<3
