@@ -45,6 +45,8 @@ __all__ = [
     "WEB_DIRECTORY",
 ]
 
+import re
+
 def display_minglee_banner(node_mappings):
     clr_border = "\033[38;2;203;166;247m"   # mauve
     clr_title = "\033[38;2;245;224;220m"    # rosewater
@@ -55,14 +57,36 @@ def display_minglee_banner(node_mappings):
     clr_reset = "\033[0m"
     clr_bold = "\033[1m"
 
-    node_count = len(node_mappings)
-    bar = f"{clr_border}{'=' * 58}{clr_reset}"
+    ansi_re = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
 
-    print(bar)
-    print(f"{clr_bold}{clr_title}MingLee Nodes{clr_reset}")
-    print(f"{clr_border}-{clr_reset} {clr_label}Status:{clr_reset} {clr_ok}Loaded successfully{clr_reset}")
-    print(f"{clr_border}-{clr_reset} {clr_label}Nodes:{clr_reset}  {clr_count}{node_count}{clr_reset} {clr_subtle}total{clr_reset}")
-    print(f"{clr_border}-{clr_reset} {clr_subtle}\"better piss in the sink, than sink in the piss\"{clr_reset}")
-    print(bar)
+    def visible_len(text):
+        return len(ansi_re.sub("", text))
+
+    def center_ansi(text, width):
+        plain_len = visible_len(text)
+        if plain_len >= width:
+            return text
+        total_pad = width - plain_len
+        left_pad = total_pad // 2
+        right_pad = total_pad - left_pad
+        return (" " * left_pad) + text + (" " * right_pad)
+
+    def box_line(content, inner_width=44):
+        padded = center_ansi(content, inner_width)
+        return f"{clr_border}│{clr_reset}{padded}{clr_border}│{clr_reset}"
+
+    node_count = len(node_mappings)
+    inner_width = 44
+
+    print("")
+    print(f"{clr_border}╭{'─' * inner_width}╮{clr_reset}")
+    print(box_line(f"{clr_bold}{clr_title}MingLee Nodes{clr_reset}", inner_width))
+    print(f"{clr_border}├{'─' * inner_width}┤{clr_reset}")
+    print(box_line(f"{clr_label}Status:{clr_reset} {clr_ok}Loaded successfully{clr_reset}", inner_width))
+    print(box_line(f"{clr_label}Nodes:{clr_reset} {clr_count}{node_count}{clr_reset} {clr_subtle}total{clr_reset}", inner_width))
+    print(box_line(f"{clr_count}\"better piss in the sink,{clr_reset}", inner_width))
+    print(box_line(f"{clr_count}than sink in the piss\"{clr_reset}", inner_width))
+    print(f"{clr_border}╰{'─' * inner_width}╯{clr_reset}")
+    print("")
 
 display_minglee_banner(NODE_CLASS_MAPPINGS)

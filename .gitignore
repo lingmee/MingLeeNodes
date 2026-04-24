@@ -6,3 +6,6 @@ venv/
 .env
 .DS_Store
 Thumbs.db
+
+Prompts/*.txt
+!Prompts/example.txt

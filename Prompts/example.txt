@@ -1,0 +1,10 @@
+This is just a example prompt, you can make your own prompts
+1 prompt per line
+The node will load 1 prompt from X line
+seed number = line number
+but seed starts from 0 and line starts from 1
+so 
+seed 0 = line 1
+seed 1 = line 2
+seed 2 = line 3
+etc.
