@@ -7,5 +7,5 @@ venv/
 .DS_Store
 Thumbs.db
 
-custom_nodes/MingLeeNodes/Prompts/*.txt
-!custom_nodes/MingLeeNodes/Prompts/example.txt
+Prompts/*.txt
+!Prompts/example.txt
