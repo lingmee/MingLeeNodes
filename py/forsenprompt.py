@@ -1,6 +1,9 @@
 import os
 
-BASE_DIR = r"D:\Prompts\iTools"
+BASE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "Prompts",
+)
 
 
 def get_prompt_files():
@@ -71,7 +74,7 @@ class ForsenPromptLoader:
     RETURN_NAMES = ("prompt", "count")
     FUNCTION = "load_file"
 
-    DESCRIPTION = "Loads a prompt line from a TXT file in D:\\Prompts\\iTools"
+    DESCRIPTION = "Loads a prompt line from a TXT file in Prompts folder located in Custom node folder"
 
     def load_file(self, prompt_file, seed, fallback="Yes"):
         file_path = os.path.join(BASE_DIR, prompt_file)
