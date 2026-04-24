@@ -10,7 +10,7 @@ Meanwhile you can look at these cats ↓
 2. `git clone https://github.com/lingmee/MingLeeNodes.git`
 3. `cd MingleeNodes\`
 4. \python_embeded\
-5. install requirements for pilgrim `..\..\..\python_embeded\python.exe -m pip install -r requirements.txt`
+5. install requirements for pilgram (instagram filter nodes) `..\..\..\python_embeded\python.exe -m pip install -r requirements.txt`
 
 ### (optional) re-install numpy version 1.26.4
 1. open cmd inside `\python_embeded`
